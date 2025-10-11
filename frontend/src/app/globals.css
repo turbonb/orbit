@@ -10,6 +10,8 @@
   --brand-amethyst: 273 68% 59%;
   --brand-sunset: 34 100% 75%;
   --brand-princeton: 34 100% 50%;
+  --brand-aurora: 186 61% 56%;
+  --brand-celeste: 185 59% 55%;
 
   /* Semantic tokens */
   --background: var(--brand-void);
@@ -42,8 +44,8 @@
 
   --glow-warm: var(--brand-princeton);
   --glow-cool: var(--brand-tekhelet);
-  --gradient-brand: linear-gradient(130deg, hsl(var(--brand-tekhelet)) 0%, hsl(var(--brand-amethyst)) 45%, hsl(var(--brand-sunset)) 70%, hsl(var(--glow-warm)) 100%);
-  --gradient-soft: linear-gradient(140deg, hsl(var(--brand-tekhelet) / 0.85) 0%, hsl(var(--brand-amethyst) / 0.75) 40%, hsl(var(--accent) / 0.65) 100%);
+  --gradient-brand: linear-gradient(130deg, hsl(var(--brand-tekhelet)) 0%, hsl(var(--brand-amethyst)) 42%, hsl(var(--brand-sunset)) 68%, hsl(var(--glow-warm)) 82%, hsl(var(--brand-aurora)) 100%);
+  --gradient-soft: linear-gradient(140deg, hsl(var(--brand-tekhelet) / 0.85) 0%, hsl(var(--brand-amethyst) / 0.75) 38%, hsl(var(--accent) / 0.65) 75%, hsl(var(--brand-aurora) / 0.7) 100%);
 
   --radius: 0.75rem;
 }
@@ -299,7 +301,7 @@ h6 {
     font-weight: 800;
     letter-spacing: 0.42em;
     text-transform: uppercase;
-    background-image: linear-gradient(115deg, #c96cff 8%, #f96dd4 45%, #ffb46a 100%);
+    background-image: linear-gradient(115deg, #3ac2d6 0%, #c96cff 22%, #f96dd4 52%, #ffb46a 100%);
     background-size: 160% 160%;
     background-position: 0% 50%;
     -webkit-text-fill-color: transparent;

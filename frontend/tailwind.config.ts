@@ -28,7 +28,9 @@ const config: Config = {
           tekhelet: "hsl(var(--brand-tekhelet))",
           amethyst: "hsl(var(--brand-amethyst))",
           sunset: "hsl(var(--brand-sunset))",
-          orange: "hsl(var(--brand-princeton))"
+          orange: "hsl(var(--brand-princeton))",
+          aurora: "hsl(var(--brand-aurora))",
+          celeste: "hsl(var(--brand-celeste))"
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
