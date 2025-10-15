@@ -34,6 +34,16 @@ export default function StartYourBuildPage() {
     <main className="relative min-h-screen overflow-hidden pb-24 pt-24 sm:pt-28">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(100%_90%_at_15%_10%,rgba(93,28,170,0.65),transparent_60%),radial-gradient(95%_75%_at_82%_20%,rgba(255,145,0,0.35),transparent_70%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(160deg,rgba(12,8,28,0.65),transparent_60%)]" />
+      <div className="absolute left-0 top-0 z-20 flex w-full justify-start px-[clamp(1rem,5vw,3rem)] pt-11">
+        <Button
+          asChild
+          variant="outline"
+          size="sm"
+          className="rounded-full border-white/25 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/75 shadow-[0_12px_40px_rgba(20,9,40,0.35)] transition hover:border-white/35 hover:bg-white/12 hover:text-white"
+        >
+          <Link href="/">← Back to Orbit</Link>
+        </Button>
+      </div>
       <figure className="pointer-events-none absolute -left-48 -top-6 hidden h-[620px] w-[620px] overflow-hidden rounded-full border-0 bg-white/3 shadow-[0_60px_180px_rgba(59,16,110,0.35)] mix-blend-screen sm:block lg:-left-40">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_30%,rgba(255,200,128,0.28),transparent_65%),radial-gradient(circle_at_75%_80%,rgba(93,28,170,0.32),transparent_78%)] blur-[3px] opacity-60" />
         <Image
@@ -47,18 +57,6 @@ export default function StartYourBuildPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_40%,rgba(255,255,255,0.14),transparent_75%)] mix-blend-screen opacity-55" />
       </figure>
       <div className="container relative z-10 space-y-12">
-        <div className="flex items-center justify-between pt-4">
-          <Button
-            asChild
-            variant="outline"
-            size="sm"
-            className="inline-flex items-center gap-2 rounded-full border-white/25 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/75 shadow-[0_12px_40px_rgba(20,9,40,0.35)] transition hover:border-white/35 hover:bg-white/10 hover:text-white"
-          >
-            <Link href="/">
-              ← Back to Orbit
-            </Link>
-          </Button>
-        </div>
         <div className="grid gap-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center xl:gap-24">
           <section className="space-y-10 text-white/85">
           <div className="space-y-6">

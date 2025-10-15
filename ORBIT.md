@@ -1,7 +1,7 @@
 # ORBIT Studio Narrative
 
 ## Brand Essence
-Orbit is Blink & Build’s signature launch sprint: a boutique studio model that fuses high-velocity execution with design-first craftsmanship. The studio exists for founders, small teams, and creative leads who need premium web experiences without the bloated timelines typical of agencies. Orbit keeps its promise by pairing a seasoned principal builder with a flexible collaborator bench, delivering Supabase-backed digital products that feel cinematic, performant, and reliable.
+Orbit is the studio’s signature launch sprint: a boutique model that fuses high-velocity execution with design-first craftsmanship. The studio exists for founders, small teams, and creative leads who need premium web experiences without the bloated timelines typical of agencies. Orbit keeps its promise by pairing a seasoned principal builder with a flexible collaborator bench, delivering Supabase-backed digital products that feel cinematic, performant, and reliable.
 
 ## What Orbit Stands For
 - **Velocity Without Drag** — Orbit is intentionally faster than traditional lead-dev firms or piecemeal contractor teams. Engagements are designed to skip the bureaucracy and decision thrash that slows output elsewhere, while maintaining enterprise-grade quality.

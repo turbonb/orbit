@@ -35,7 +35,7 @@ export function SiteHeader() {
                 className="object-cover"
               />
             </span>
-            <span className="hidden text-xs font-semibold uppercase tracking-[0.45em] text-white/75 sm:inline">
+            <span className="hidden font-display text-xs font-semibold uppercase tracking-[0.45em] text-white/75 sm:inline">
               Orbit Collective
             </span>
           </Link>

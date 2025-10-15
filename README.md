@@ -1,6 +1,6 @@
 # Orbit Project Scaffold
 
-This repository contains the groundwork for the Blink & Build **Orbit** web experience.
+This repository contains the groundwork for the **Orbit Collective** web experience.
 
 ## Structure
 

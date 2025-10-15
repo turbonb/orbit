@@ -16,6 +16,10 @@ const config: Config = {
       }
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-fahkwang)", "system-ui", "sans-serif"],
+        display: ["var(--font-game-paused)", "var(--font-fahkwang)", "sans-serif"]
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

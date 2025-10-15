@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Fahkwang } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
-const inter = Inter({
+const fahkwang = Fahkwang({
   subsets: ["latin"],
-  variable: "--font-inter"
+  weight: ["200", "300", "400", "500", "600", "700"],
+  variable: "--font-fahkwang",
+  display: "swap"
 });
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk"
+const gamePaused = localFont({
+  src: "../../public/fonts/game-paused.otf",
+  variable: "--font-game-paused",
+  display: "swap"
 });
 
 export const metadata: Metadata = {
@@ -22,7 +26,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
+      <body className={`${fahkwang.variable} ${gamePaused.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {children}
         </ThemeProvider>
