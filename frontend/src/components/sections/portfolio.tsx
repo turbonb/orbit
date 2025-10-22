@@ -34,14 +34,14 @@ export function PortfolioSection() {
   return (
     <section id="work" className="section-shell relative py-24">
       <div className="container relative space-y-14">
-        <header className="max-w-2xl">
+        <header className="orbit-text-card max-w-2xl space-y-5 px-6 py-8">
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">Selected Work</p>
           <h2 className="display-subheading mt-4 text-balance text-3xl font-semibold text-foreground sm:text-4xl">
             <span className="inline-block text-gradient-soft">
               Real-world launches that show how Orbit Collective ships Orbit-fast.
             </span>
           </h2>
-          <p className="mt-4 text-base text-muted-foreground sm:text-lg">
+          <p className="mt-4 text-base text-white/90 sm:text-lg">
             Each sprint merges narrative craft, automation-native engineering, and Supabase
             infrastructure so teams earn momentum without pausing to replatform later.
           </p>
@@ -50,7 +50,7 @@ export function PortfolioSection() {
           {caseStudies.map(({ client, type, description, metrics, accent, letter }) => (
             <Card
               key={client}
-              className="flex flex-col overflow-hidden border border-primary/20 bg-card/80 shadow-orbit-lg"
+              className="flex flex-col overflow-hidden"
             >
               <div
                 className={`relative aspect-[3/2] overflow-hidden bg-gradient-to-br ${accent}`}
@@ -62,16 +62,16 @@ export function PortfolioSection() {
               </div>
               <CardHeader>
                 <CardTitle className="inline-block text-xl capitalize text-gradient-brand">{type}</CardTitle>
-                <CardDescription className="leading-relaxed">
+                <CardDescription className="leading-relaxed text-white/85">
                   For {client}. {description}
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-2">
-                <ul className="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-muted-foreground">
+                <ul className="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-white/75">
                   {metrics.map((item) => (
                     <li
                       key={item}
-                      className="rounded-full border border-primary/20 bg-secondary/60 px-3 py-1 text-foreground shadow-inner shadow-primary/20"
+                      className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-white shadow-inner shadow-black/20"
                     >
                       {item}
                     </li>

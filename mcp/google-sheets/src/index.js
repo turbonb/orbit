@@ -13,17 +13,17 @@ const valueInputOptionSchema = z
   .enum(['RAW', 'USER_ENTERED'])
   .default('USER_ENTERED')
   .describe(
-    'How input data should be interpreted. RAW stores literal values; USER_ENTERED lets Sheets parse them.'
+    'How input data should be interpreted. RAW stores values exactly; USER_ENTERED lets Sheets apply parsing.'
   );
 
-const insertOptionSchema = z
+const insertDataOptionSchema = z
   .enum(['INSERT_ROWS', 'OVERWRITE'])
   .default('INSERT_ROWS')
   .describe(
-    'INSERT_ROWS adds new rows below the existing data. OVERWRITE writes into the first matching range.'
+    'Whether to insert new rows for the appended data or overwrite existing rows.'
   );
 
-function success(payload) {
+function successResult(payload) {
   return {
     content: [
       {
@@ -35,11 +35,14 @@ function success(payload) {
   };
 }
 
-function failure(error) {
-  const message =
-    error?.response?.data?.error?.message ??
-    error?.message ??
-    'Unexpected error calling Google Sheets API.';
+function errorResult(error) {
+  let message = 'Unexpected error calling Google Sheets API.';
+  if (error?.response?.data?.error?.message) {
+    message = error.response.data.error.message;
+  } else if (error?.message) {
+    message = error.message;
+  }
+
   return {
     content: [
       {
@@ -54,22 +57,24 @@ function failure(error) {
 server.registerTool(
   'sheets.getValues',
   {
-    title: 'Read values from a range',
+    title: 'Fetch cell values',
     description:
-      'Fetch an A1-style range from a spreadsheet. Works with public sheets (API key) or private sheets shared with the service account.',
+      'Read a range of values from a Google Sheet. Works with public sheets (API key) or private sheets via service account.',
     inputSchema: z.object({
       spreadsheetId: z
         .string()
-        .min(1, 'Spreadsheet ID is required.')
-        .describe('The spreadsheet ID from the sheet URL.'),
+        .min(1)
+        .describe('The spreadsheet ID (from the sheet URL).'),
       range: z
         .string()
-        .min(1, 'Range is required.')
-        .describe('A1 range, e.g., "Sheet1!A1:D10".'),
+        .min(1)
+        .describe('A1-style range, e.g. "Sheet1!A1:D10".'),
       majorDimension: z
         .enum(['ROWS', 'COLUMNS'])
         .optional()
-        .describe('Return values row-wise (default) or column-wise.'),
+        .describe(
+          'Whether values should be returned row-wise (default) or column-wise.'
+        ),
       valueRenderOption: z
         .enum(['FORMATTED_VALUE', 'UNFORMATTED_VALUE', 'FORMULA'])
         .optional()
@@ -77,15 +82,17 @@ server.registerTool(
       dateTimeRenderOption: z
         .enum(['SERIAL_NUMBER', 'FORMATTED_STRING'])
         .optional()
-        .describe('How dates/times should be rendered.')
+        .describe('How date/time values are rendered.')
     }),
     outputSchema: z.object({
       spreadsheetId: z.string(),
       range: z.string(),
       majorDimension: z.string().nullable(),
-      values: z.array(
-        z.array(z.union([z.string(), z.number(), z.boolean(), z.null()]))
-      )
+      values: z
+        .array(
+          z.array(z.union([z.string(), z.number(), z.boolean(), z.null()]))
+        )
+        .describe('Two-dimensional array of cell values.')
     })
   },
   async (input) => {
@@ -100,14 +107,14 @@ server.registerTool(
       });
 
       const data = response.data;
-      return success({
+      return successResult({
         spreadsheetId: input.spreadsheetId,
         range: data.range ?? input.range,
         majorDimension: data.majorDimension ?? null,
         values: data.values ?? []
       });
     } catch (error) {
-      return failure(error);
+      return errorResult(error);
     }
   }
 );
@@ -117,30 +124,32 @@ server.registerTool(
   {
     title: 'Append rows to a sheet',
     description:
-      'Append one or more rows to a sheet/tab. Requires a service account with edit access to the spreadsheet.',
+      'Append one or more rows to a Google Sheet range. Requires service-account credentials with edit access to the spreadsheet.',
     inputSchema: z.object({
       spreadsheetId: z
         .string()
-        .min(1, 'Spreadsheet ID is required.')
-        .describe('The spreadsheet ID from the sheet URL.'),
+        .min(1)
+        .describe('The spreadsheet ID (from the sheet URL).'),
       range: z
         .string()
-        .min(1, 'Range is required.')
+        .min(1)
         .describe(
-          'Target range. Usually just the sheet name (e.g., "Quotes!A1") when appending.'
+          'A1-style range to append into, typically the sheet/tab name (e.g., "Quotes!A1").'
         ),
       values: z
         .array(
           z.array(z.union([z.string(), z.number(), z.boolean(), z.null()]))
         )
-        .min(1, 'At least one row of values is required.')
-        .describe('Rows to append. Outer array = rows; inner arrays = cells.'),
+        .min(1)
+        .describe(
+          'Rows to append. Provide a two-dimensional array (outer array = rows, inner arrays = cell values).'
+        ),
       valueInputOption: valueInputOptionSchema.optional(),
-      insertDataOption: insertOptionSchema.optional(),
+      insertDataOption: insertDataOptionSchema.optional(),
       includeValuesInResponse: z
         .boolean()
         .optional()
-        .describe('Return the appended values in the response payload.')
+        .describe('Whether to return the appended values in the response.')
     }),
     outputSchema: z.object({
       spreadsheetId: z.string(),
@@ -167,9 +176,9 @@ server.registerTool(
   async (input) => {
     try {
       if (!hasServiceAccount()) {
-        return failure(
+        return errorResult(
           new Error(
-            'Append requires a service account with edit access. Set GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON or GOOGLE_SHEETS_SERVICE_ACCOUNT_FILE.'
+            'Append operations require a Google service account with edit access. Provide credentials via GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON or GOOGLE_SHEETS_SERVICE_ACCOUNT_FILE.'
           )
         );
       }
@@ -189,7 +198,7 @@ server.registerTool(
       });
 
       const data = response.data;
-      return success({
+      return successResult({
         spreadsheetId: input.spreadsheetId,
         tableRange: data.tableRange ?? null,
         updates: data.updates
@@ -219,25 +228,28 @@ server.registerTool(
           : undefined
       });
     } catch (error) {
-      return failure(error);
+      return errorResult(error);
     }
   }
 );
 
 async function start() {
   try {
-    await getSheetsClient();
+    const sheets = await getSheetsClient();
+    if (!sheets) {
+      throw new Error('Failed to initialize Google Sheets client.');
+    }
     if (!hasServiceAccount()) {
       console.warn(
-        '[google-sheets-mcp] Warning: running in read-only mode (API key). Append/update requires a service account.'
+        '[google-sheets-mcp] Warning: no service account credentials detected. Append/update tools require a service account with edit permissions. Current configuration is read-only.'
       );
     }
   } catch (error) {
-    console.warn(
-      `[google-sheets-mcp] Failed to initialize Sheets client: ${
-        error?.message ?? 'unknown error'
-      }`
-    );
+    if (error?.message) {
+      console.warn(`[google-sheets-mcp] ${error.message}`);
+    } else {
+      console.warn('[google-sheets-mcp] Failed to initialize Sheets client.');
+    }
   }
 
   const transport = new StdioServerTransport();

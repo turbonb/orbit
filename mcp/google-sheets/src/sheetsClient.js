@@ -5,7 +5,7 @@ import { google } from 'googleapis';
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 
 let cachedClient = null;
-let serviceAccountCache;
+let serviceAccountCache = undefined;
 
 function resolveServiceAccountJson() {
   if (serviceAccountCache !== undefined) {
@@ -18,7 +18,7 @@ function resolveServiceAccountJson() {
       serviceAccountCache = JSON.parse(jsonInline);
     } catch (error) {
       throw new Error(
-        'Failed to parse GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON. Ensure it is valid JSON.'
+        'Failed to parse GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON. Ensure it contains valid JSON credentials.'
       );
     }
     return serviceAccountCache;

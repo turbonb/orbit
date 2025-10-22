@@ -5,7 +5,7 @@ export function CTASection() {
   return (
     <section id="contact" className="section-shell relative overflow-hidden py-24">
       <div className="container relative">
-        <Card className="mx-auto max-w-3xl border border-primary/30 bg-card/85 p-10 text-center shadow-[0_25px_70px_hsl(var(--brand-void)_/_0.5)]">
+        <Card className="mx-auto max-w-3xl p-10 text-center">
           <div className="space-y-4">
             <p className="text-sm font-semibold uppercase tracking-wide text-accent">
               Ready to pick your launch window?
@@ -15,7 +15,7 @@ export function CTASection() {
                 Reserve an Orbit sprint and preview your launch-ready experience inside two weeks.
               </span>
             </h2>
-            <p className="text-base text-muted-foreground sm:text-lg">
+            <p className="text-base text-white/85 sm:text-lg">
               Share your vision, timeline, and growth goals. We’ll shape the right package, confirm
               the Supabase architecture, and lock a kickoff within 24 hours of alignment.
             </p>
@@ -29,12 +29,12 @@ export function CTASection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="min-w-[200px] rounded-full border-primary/40 bg-secondary/50 text-primary hover:bg-secondary/70"
+                className="min-w-[200px] rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20"
               >
                 Download Service Deck
               </Button>
             </div>
-            <p className="text-xs uppercase tracking-wide text-muted-foreground">
+            <p className="text-xs uppercase tracking-wide text-white/70">
               Two sprint windows remain open this quarter.
             </p>
           </div>

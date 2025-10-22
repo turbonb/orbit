@@ -51,14 +51,17 @@ export function ProcessSection() {
   return (
     <section id="process" className="section-shell relative overflow-hidden py-24">
       <div className="container relative grid gap-14">
-        <Reveal as="header" className="mx-auto max-w-2xl text-center">
+        <Reveal
+          as="header"
+          className="orbit-text-card mx-auto max-w-2xl space-y-5 px-6 py-8 text-center sm:px-10"
+        >
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">Process</p>
           <h2 className="display-subheading mt-4 text-balance text-3xl font-semibold text-foreground sm:text-4xl">
             <span className="inline-block text-gradient-soft">
               A launch playbook engineered for pace without the drop in polish.
             </span>
           </h2>
-          <p className="mt-5 text-base text-muted-foreground sm:text-lg">
+          <p className="mt-5 text-base text-white/85 sm:text-lg">
             Orbit threads strategy, design, and engineering into one orchestrated sprint so the
             product never leaves orbit. Tight feedback loops and automation keep decisions and
             delivery moving in lockstep.
@@ -70,7 +73,7 @@ export function ProcessSection() {
               key={title}
               as="li"
               delay={0.05 * index}
-              className="relative rounded-3xl border border-primary/25 bg-card/85 p-8 shadow-[0_20px_60px_hsl(var(--brand-void)_/_0.45)] backdrop-blur"
+              className="orbit-text-card relative p-8"
             >
               <div className="flex items-start justify-between gap-6 sm:items-center">
                 <div className="flex items-center gap-4">
@@ -79,16 +82,16 @@ export function ProcessSection() {
                   </span>
                   <div>
                     <h3 className="text-lg font-semibold">{title}</h3>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                    <p className="text-sm font-semibold uppercase tracking-wide text-white/70">
                       {duration}
                     </p>
                   </div>
                 </div>
               </div>
-              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+              <ul className="mt-6 space-y-3 text-sm text-white/85">
                 {bullets.map((bullet) => (
                   <li key={bullet} className="flex items-start gap-3 leading-relaxed">
-                    <span className="mt-2 h-1 w-5 rounded-full bg-accent" aria-hidden />
+                    <span className="mt-2 h-1 w-5 rounded-full bg-white/70" aria-hidden />
                     <span>{bullet}</span>
                   </li>
                 ))}

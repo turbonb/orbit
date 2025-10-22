@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { submitStartBuildAction, type SubmitStartBuildResult } from "@/app/start-your-build/actions";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -76,17 +77,10 @@ export function StartBuildForm() {
     setErrorMessage(null);
 
     try {
-      const response = await fetch("/api/start-request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(values)
-      });
+      const result: SubmitStartBuildResult = await submitStartBuildAction(values);
 
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}));
-        throw new Error(data?.error ?? "We couldn’t send your request. Try again in a moment.");
+      if (!result.success) {
+        throw new Error(result.errors?.join(" ") ?? result.message ?? "We couldn’t send your request. Try again in a moment.");
       }
 
       setStatus("success");
@@ -315,4 +309,3 @@ export function StartBuildForm() {
     </div>
   );
 }
-

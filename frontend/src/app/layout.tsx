@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Fahkwang } from "next/font/google";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { GlobalVideoBackground } from "@/components/layout/global-video-background";
 
-const fahkwang = Fahkwang({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
-  variable: "--font-fahkwang",
+  variable: "--font-inter",
   display: "swap"
 });
 
@@ -18,15 +18,16 @@ const gamePaused = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Orbit — Launch Studio",
+  title: "Silver Lining Cleaning Services",
   description:
-    "Orbit is the launch sprint program crafting design-forward Supabase web experiences at remarkable speed."
+    "Silver Lining delivers premium residential and commercial cleaning with eco-friendly products, meticulous teams, and concierge-level care."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${fahkwang.variable} ${gamePaused.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${gamePaused.variable} font-sans antialiased`}>
+        <GlobalVideoBackground />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {children}
         </ThemeProvider>
