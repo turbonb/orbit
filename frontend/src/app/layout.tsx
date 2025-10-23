@@ -1,36 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { GlobalVideoBackground } from "@/components/layout/global-video-background";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap"
-});
-
-const gamePaused = localFont({
-  src: "../../public/fonts/game-paused.otf",
-  variable: "--font-game-paused",
-  display: "swap"
-});
 
 export const metadata: Metadata = {
-  title: "Silver Lining Cleaning Services",
+  title: "Flashpoint Energy | Woodland",
   description:
-    "Silver Lining delivers premium residential and commercial cleaning with eco-friendly products, meticulous teams, and concierge-level care."
+    "Port of the Flashpoint Energy V2 Webflow experience for Nick's Main Site.",
+  metadataBase: new URL("https://nicks-main-site.webflow.io/")
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+type RootLayoutProps = {
+  children: React.ReactNode;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${gamePaused.variable} font-sans antialiased`}>
-        <GlobalVideoBackground />
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          {children}
-        </ThemeProvider>
+    <html lang="en">
+      <body className="bg-background text-foreground antialiased font-sans">
+        {children}
       </body>
     </html>
   );

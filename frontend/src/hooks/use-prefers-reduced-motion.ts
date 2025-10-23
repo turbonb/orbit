@@ -1,34 +1,31 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
-/**
- * Indicates whether the visitor prefers reduced motion.
- * Falls back to `false` during SSR and updates on changes.
- */
-export function usePrefersReducedMotion() {
-  const getInitialValue = () => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  };
+const QUERY = "(prefers-reduced-motion: reduce)";
 
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(getInitialValue);
+export function usePrefersReducedMotion(): boolean {
+  const [prefersReduced, setPrefersReduced] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (typeof window === "undefined") return;
 
-    const updatePreference = () => {
-      setPrefersReducedMotion(mediaQuery.matches);
+    const mediaQuery = window.matchMedia(QUERY);
+    const updatePreference = (event: MediaQueryListEvent | MediaQueryList) => {
+      setPrefersReduced(event.matches);
     };
 
-    updatePreference();
+    updatePreference(mediaQuery);
 
-    mediaQuery.addEventListener("change", updatePreference);
+    const canAddEventListener = typeof mediaQuery.addEventListener === "function";
+    if (canAddEventListener) {
+      mediaQuery.addEventListener("change", updatePreference);
+      return () => mediaQuery.removeEventListener("change", updatePreference);
+    }
 
-    return () => {
-      mediaQuery.removeEventListener("change", updatePreference);
-    };
+    mediaQuery.addListener(updatePreference);
+    return () => mediaQuery.removeListener(updatePreference);
   }, []);
 
-  return prefersReducedMotion;
+  return prefersReduced;
 }
