@@ -1,8 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
-const PRESS_LOGOS = [
+export const PRESS_LOGOS = [
   {
     src: "https://cdn.prod.website-files.com/68f93164bb03f1f44689f2c4/68f93165bb03f1f44689f343_logo-1.svg",
     alt: "HGTV"

@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
@@ -14,8 +16,8 @@ export function HeroBanner() {
         <motion.div
           className="hero-image-background"
           aria-hidden="true"
-          initial={{ scale: 1.08, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1, transition: { ...baseTransition } }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { ...baseTransition } }}
         />
         <div className="page-title">
           <div className="container">
@@ -35,9 +37,8 @@ export function HeroBanner() {
         <motion.div
           className="hero-image-foreground"
           aria-hidden="true"
-          initial={{ scale: 1.08, opacity: 0 }}
+          initial={{ opacity: 0 }}
           animate={{
-            scale: 1,
             opacity: 1,
             transition: { ...baseTransition, delay: prefersReducedMotion ? 0 : 0.2 }
           }}

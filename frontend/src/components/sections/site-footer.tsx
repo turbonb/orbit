@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
-import usePrefersReducedMotion from "@/hooks/use-prefers-reduced-motion";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 

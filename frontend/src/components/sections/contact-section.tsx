@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import usePrefersReducedMotion from "@/hooks/use-prefers-reduced-motion";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 

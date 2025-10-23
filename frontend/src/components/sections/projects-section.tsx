@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -66,18 +68,56 @@ export function ProjectsSection() {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ staggerChildren: prefersReducedMotion ? 0 : 0.18 }}
     >
-      <div className="container">
-        <motion.h2
-          className="section-heading-large projects-heading"
-          variants={sectionVariants}
-        >
+      <div className="projects-shell">
+        <motion.h2 className="section-heading-large projects-heading" variants={sectionVariants}>
           Projects
         </motion.h2>
         <motion.div className="projects-list">
-          {PROJECTS.map((project) => (
+          {PROJECTS.map((project) => {
+            const directionMultiplier = project.align === "left" ? -1 : 1;
+
+            const figureInitial = prefersReducedMotion
+              ? { opacity: 0 }
+              : {
+                  opacity: 0,
+                  x: 90 * directionMultiplier,
+                  scale: 0.95
+                };
+
+            const figureAnimate = prefersReducedMotion
+              ? { opacity: 1 }
+              : {
+                  opacity: 1,
+                  x: 0,
+                  scale: 1,
+                  transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
+                };
+
+            const imageInitial = prefersReducedMotion
+              ? { opacity: 0 }
+              : {
+                  opacity: 0,
+                  scaleX: 0.88,
+                  x: 60 * directionMultiplier
+                };
+
+            const imageAnimate = prefersReducedMotion
+              ? { opacity: 1 }
+              : {
+                  opacity: 1,
+                  scaleX: 1,
+                  x: 0,
+                  transition: {
+                    duration: 0.9,
+                    ease: [0.22, 1, 0.36, 1]
+                  }
+                };
+
+            return (
             <motion.article
               className="project-item"
               key={project.title}
+              data-align={project.align}
               variants={sectionVariants}
               transition={{
                 duration: prefersReducedMotion ? 0 : 0.65,
@@ -86,29 +126,40 @@ export function ProjectsSection() {
             >
               <motion.figure
                 className="project-figure"
-                initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.98 }}
-                whileInView={{
-                  opacity: 1,
-                  scale: 1,
-                  transition: { duration: prefersReducedMotion ? 0 : 0.8, ease: [0.25, 1, 0.5, 1] }
-                }}
+                initial={figureInitial}
+                whileInView={figureAnimate}
                 viewport={{ once: true, amount: 0.4 }}
               >
-                <Image
-                  src={project.image.src}
-                  alt={project.image.alt}
-                  width={1440}
-                  height={960}
-                  className="project-image"
-                  sizes="(max-width: 767px) 100vw, 960px"
-                  priority={project.title === "Coastal Villa"}
-                />
+                <motion.div
+                  className="project-image-wrapper"
+                  initial={imageInitial}
+                  whileInView={imageAnimate}
+                  viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
+                  style={{
+                    transformOrigin: project.align === "left" ? "left center" : "right center"
+                  }}
+                >
+                  <Image
+                    src={project.image.src}
+                    alt={project.image.alt}
+                    width={1500}
+                    height={1000}
+                    className="project-image"
+                    sizes="(max-width: 767px) 100vw, (max-width: 1400px) 95vw, 1500px"
+                    priority={project.title === "Coastal Villa"}
+                  />
+                </motion.div>
                 <motion.div
                   className="project-info-card"
                   data-align={project.align}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={
+                    prefersReducedMotion
+                      ? { opacity: 0 }
+                      : { opacity: 0, x: 40 * directionMultiplier, y: 30 }
+                  }
                   whileInView={{
                     opacity: 1,
+                    x: 0,
                     y: 0,
                     transition: {
                       duration: prefersReducedMotion ? 0 : 0.6,
@@ -129,7 +180,8 @@ export function ProjectsSection() {
                 </motion.div>
               </motion.figure>
             </motion.article>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
     </motion.section>
