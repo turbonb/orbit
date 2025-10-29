@@ -1,11 +1,11 @@
-# ORBIT Studio Narrative
+# ORBIT Innovation Collective Narrative
 
 ## Brand Essence
-Orbit is the studio’s signature launch sprint: a boutique model that fuses high-velocity execution with design-first craftsmanship. The studio exists for founders, small teams, and creative leads who need premium web experiences without the bloated timelines typical of agencies. Orbit keeps its promise by pairing a seasoned principal builder with a flexible collaborator bench, delivering Supabase-backed digital products that feel cinematic, performant, and reliable.
+Orbit is the innovation collective’s signature launch sprint: a product lab model that fuses high-velocity execution with design-first craftsmanship. The innovation collective exists for founders, small teams, and creative leads who need premium web experiences without the bloated timelines typical of agencies. Orbit keeps its promise by pairing a seasoned principal builder with a flexible collaborator bench, delivering Supabase-backed digital products that feel cinematic, performant, and reliable.
 
 ## What Orbit Stands For
 - **Velocity Without Drag** — Orbit is intentionally faster than traditional lead-dev firms or piecemeal contractor teams. Engagements are designed to skip the bureaucracy and decision thrash that slows output elsewhere, while maintaining enterprise-grade quality.
-- **Relentless Curiosity** — Continuous learning is baked into the operating system. Every sprint pulls in emerging Supabase patterns, motion studies, automation tools, and product heuristics so clients benefit from a studio that is always leveling up.
+- **Relentless Curiosity** — Continuous learning is baked into the operating system. Every sprint pulls in emerging Supabase patterns, motion studies, automation tools, and product heuristics so clients benefit from an innovation collective that is always leveling up.
 - **Obsessive Alignment** — Clients describe the outcome, Orbit shoulders the execution. Discovery rituals translate stakeholder intent into structured build plans, keeping delivery tightly bound to the needs articulated by the customer.
 - **Accessible Excellence** — Pricing is calibrated for ambitious startups and lean teams. Offering mid–four-figure entry points and transparent milestones ensures Orbit remains an approachable partner without diluting craft.
 
@@ -59,7 +59,7 @@ Orbit is helmed by **Nick Brooks**, a builder who pairs deep engineering rigor w
 - **Technical Mastery** — Next.js 15, React 18/19, TypeScript, Tailwind CSS, Radix UI, Supabase (Auth/DB/Storage/RLS), Framer Motion, Redis/BullMQ, VoltAgent, Playwright, Docker-based environments.
 - **Product Fluency** — Translates fuzzy briefs into structured launch plans, choosing automation and Supabase patterns that reduce manual overhead.
 - **Collaboration Style** — Operates as a single accountable owner while curating a trusted specialist bench (design, illustration, devops) when projects demand it. Clients stay in the loop via Loom recaps, async feedback threads, and decisive live reviews.
-- **Learner’s Mindset** — Weekly R&D blocks keep the studio ahead of Supabase releases, shadcn patterns, and motion trends. Insights roll into a private knowledge base that informs each sprint.
+- **Learner’s Mindset** — Weekly R&D blocks keep the product lab ahead of Supabase releases, shadcn patterns, and motion trends. Insights roll into a private knowledge base that informs each sprint.
 
 ## Working With Orbit
 - **Intake** — Stakeholders articulate goals, must-haves, and guardrails; Orbit reframes them into a playbook with deliverables, milestones, and budget clarity.
@@ -78,7 +78,7 @@ Orbit is helmed by **Nick Brooks**, a builder who pairs deep engineering rigor w
 - **Narrative Anchors:** “Launch-quality experiences in weeks, not months.” “Supabase-first infrastructure that scales with your ops.” “Design-first development from strategy through deployment.”
 - **Proof Points:** Cite sprint timelines (10–21 days), high satisfaction (NPS 97+), efficiency wins (25% reporting time savings), and automation gains. Use anonymized case metrics to illustrate impact.
 - **Calls to Action:** “Start your sprint,” “Book a discovery call,” “Download the service deck,” “Browse anonymized case studies.” Pair CTAs with reassurance about affordability and collaborative ownership.
-- **Tone Levers:** Reference the studio’s curiosity (“always learning”), approachability (“accessible excellence”), and ability to translate client intent into shipped realities.
+- **Tone Levers:** Reference the innovation collective’s curiosity (“always learning”), approachability (“accessible excellence”), and ability to translate client intent into shipped realities.
 
 ## Operations & Logistics
 - **Engagement Cadence:** Orbit runs one primary build per cycle to preserve velocity. Monday–Thursday are collaboration-heavy; Fridays are reserved for polish, documentation, and knowledge capture.
